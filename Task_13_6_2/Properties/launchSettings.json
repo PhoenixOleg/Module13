@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Task_13_6_2": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\SkillFactory\\Модуль 13. Основные коллекции С#\\Задание 13.6.2\\Text1.txt\""
+    }
+  }
+}

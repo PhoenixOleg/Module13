@@ -19,10 +19,11 @@
             }
             #endregion Проверка входного параметра
 
-            #region Чтение данных из файла заполнение масс
+            #region Чтение данных из файла заполнение массива
             try
             {
                 string text = File.ReadAllText(args[0]);
+                text = new string(text.Where(c => !char.IsPunctuation(c)).ToArray()); //Убраны знаки пунктуации
                 words = text.Split(delimeters, StringSplitOptions.RemoveEmptyEntries);
             }
             catch (Exception ex)
@@ -30,6 +31,10 @@
                 GoodBye(ex.HResult, $"Произошла ошибка {ex.HResult} {ex.Message}");
             }
             #endregion Чтение данных из файла
+
+            #region Заполнение словаря
+
+            #endregion Заполнение словаря
         }
 
         private static void GoodBye(int exitCode, string msg)

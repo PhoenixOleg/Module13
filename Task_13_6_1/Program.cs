@@ -23,7 +23,7 @@ namespace Task_13_6_1
             }
             #endregion Проверка входного параметра
 
-            #region Чтение данных из файла заполнение масс
+            #region Чтение данных из файла заполнение массива
             try 
             {
                 string text = File.ReadAllText(args[0]);
