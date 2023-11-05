@@ -76,7 +76,7 @@ namespace Task_13_6_1
                 Console.WriteLine(msg);
             }
 
-            Console.WriteLine("Нажмите любую кнопку для выхода");
+            Console.WriteLine("\nНажмите любую кнопку для выхода");
             Console.ReadKey();
             System.Environment.Exit(exitCode);
         }
