@@ -6,6 +6,7 @@
         {
             string[] words = null;
             char[] delimeters = new char[] { ' ', '\r', '\n' };
+            Dictionary<string, int> dict = new(); // Словарь: Слово (ключ), Частота (значение)
 
             #region Проверка входного параметра
             if (args.Length == 0 || args.Length > 1)
@@ -23,7 +24,7 @@
             try
             {
                 string text = File.ReadAllText(args[0]);
-                text = new string(text.Where(c => !char.IsPunctuation(c)).ToArray()); //Убраны знаки пунктуации
+                text = new string(text.Where(c => !char.IsPunctuation(c)).ToArray()).ToUpper(); //Убраны знаки пунктуации
                 words = text.Split(delimeters, StringSplitOptions.RemoveEmptyEntries);
             }
             catch (Exception ex)
@@ -33,8 +34,35 @@
             #endregion Чтение данных из файла
 
             #region Заполнение словаря
-
+            if (words != null)
+            {
+                foreach (string word in words)
+                {
+                    if (dict.ContainsKey(word)) 
+                    {
+                        dict[word] += 1;
+                    }
+                    else
+                    {
+                        dict.Add(word, 1);
+                    }                    
+                }
+            }
             #endregion Заполнение словаря
+
+            dict = dict.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+
+            foreach (var key in dict.Keys)
+            { Console.WriteLine($"{key} {dict[key]}"); }
+
+            Console.WriteLine();
+
+            //Выводим первые 10 строк
+            foreach (var key in dict.Keys.Take(10))
+                Console.WriteLine($"{key} {dict[key]}");
+
+
+            GoodBye(0, "");
         }
 
         private static void GoodBye(int exitCode, string msg)
